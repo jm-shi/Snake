@@ -9,6 +9,7 @@
 #define menu_h
 
 #include "main.h"
+#include <stdio.h>
 
 void drawScore(SDL_Renderer *renderer, GameState *game);
 

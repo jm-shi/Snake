@@ -13,12 +13,12 @@
 #include <SDL2/SDL.h>
 #include <SDL2_ttf/SDL_ttf.h>
 #include "main.h"
-#include "snakeStatus.c"
+#include "snakeStatus.h"
 #include "menu.h"
 
 void loadGame(GameState *game) {
     srand((int)time(NULL));
-    
+
     // Snake starts at center, is alive, and moves in random direction
     game->snake.x = SCREEN_WIDTH/2;
     game->snake.y = SCREEN_HEIGHT/2;
@@ -31,7 +31,7 @@ void loadGame(GameState *game) {
     game->snake.previous = NULL;
     game->snake.next = NULL;
     game->snake.tail = &game->snake;
-    
+
     game->fruit.x = rand() % (SCREEN_WIDTH-20) / 10 * 10;
     game->fruit.y = rand() % (SCREEN_HEIGHT-20) / 10 * 10;
     // The fruit's coordinate must divide evenly with 20
@@ -41,8 +41,8 @@ void loadGame(GameState *game) {
     if (game->fruit.y % 20 != 0) {
         game->fruit.y += 10;
     }
-    
-    game->font = TTF_OpenFont("/Library/Fonts/Microsoft/Franklin Gothic Book.ttf", 50);
+
+    game->font = TTF_OpenFont("RobotoBlack.ttf", 50);
     game->paused = 0;
     game->score = 0;
     game->noWalls = 1; // By default, snake can go through walls
@@ -53,7 +53,7 @@ void process(SDL_Renderer *renderer, GameState *game) {
         Snake *snake = &game->snake;
 
         ateFruit(renderer, game);
-        
+
         // If snake goes beyond the right end of screen, go to left end of screen
         if (snake->head->x >= SCREEN_WIDTH-SNAKE_SIZE && snake->head->direction == GO_RIGHT) {
             if (game->noWalls) {
@@ -98,7 +98,7 @@ void process(SDL_Renderer *renderer, GameState *game) {
                 snake->collisionY = snake->head->y;
             }
         }
-        
+
         moveSnake(snake);
     }
 }
@@ -106,7 +106,7 @@ void process(SDL_Renderer *renderer, GameState *game) {
 int playAgain(SDL_Renderer *renderer, SDL_Window *window, GameState *game) {
     SDL_Event event;
     int running = 1;
-    
+
     while (SDL_PollEvent(&event)) {
         switch(event.type) {
             case SDL_WINDOWEVENT_CLOSE: {
@@ -162,18 +162,18 @@ int playAgain(SDL_Renderer *renderer, SDL_Window *window, GameState *game) {
                 break;
         }
     }
-    
+
     return running;
 }
 
 int processEvents(SDL_Renderer *renderer, SDL_Window *window, GameState *game) {
-    
+
     if (game->snake.isDead)
         return 0;
-    
+
     SDL_Event event;
     int running = 1;
-    
+
     while (SDL_PollEvent(&event)) {
         switch(event.type) {
             case SDL_WINDOWEVENT_CLOSE:
@@ -211,7 +211,7 @@ int processEvents(SDL_Renderer *renderer, SDL_Window *window, GameState *game) {
                 break;
         }
     }
-    
+
     if (!game->paused) {
         const Uint8 *state = SDL_GetKeyboardState(NULL);
         if(state[SDL_SCANCODE_LEFT]) {
@@ -252,7 +252,7 @@ int processEvents(SDL_Renderer *renderer, SDL_Window *window, GameState *game) {
         pauseGame(renderer, game);
         SDL_RenderPresent(renderer);
     }
-    
+
     return running;
 }
 
@@ -260,12 +260,12 @@ void render(SDL_Renderer *renderer, GameState *game)
 {
     // Set the drawing color to black
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    
+
     SDL_RenderClear(renderer);
-    
+
     // Set the drawing color to green
     SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
-    
+
     // Draw a rectangle at snake's head position
     SDL_Rect rect = {
         game->snake.x, // x-coordinate
@@ -274,19 +274,19 @@ void render(SDL_Renderer *renderer, GameState *game)
         SNAKE_SIZE  // Height
     };
     SDL_RenderFillRect(renderer, &rect);
-    
+
     // Set the drawing color to white
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-    
+
     // Give snake a white outline
     SDL_RenderDrawRect(renderer, &rect);
-    
+
     int snakeNum = 1;
     Snake *curNode = game->snake.head;
     while (snakeNum++ < game->snake.length) {
         // Set the drawing color to green
         SDL_SetRenderDrawColor(renderer, 25, 156, 11, 255);
-        
+
         // Draw a rectangle at snake's position
         SDL_Rect rect2 = {
             curNode->previous->x, // x-coordinate
@@ -295,19 +295,19 @@ void render(SDL_Renderer *renderer, GameState *game)
             SNAKE_SIZE            // Height
         };
         SDL_RenderFillRect(renderer, &rect2);
-        
+
         // Set the drawing color to white
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-        
+
         // Give snake a white outline
         SDL_RenderDrawRect(renderer, &rect2);
-        
+
         curNode = curNode->previous;
     }
-   
+
     // Set the drawing color to red
     SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-    
+
     // Draw a rectangle at fruit's position
     SDL_Rect fruitRect = {
         game->fruit.x,
@@ -316,14 +316,14 @@ void render(SDL_Renderer *renderer, GameState *game)
         FRUIT_SIZE
     };
     SDL_RenderFillRect(renderer, &fruitRect);
-    
+
     // Set the drawing color to white
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     // Give fruit a white outline
     SDL_RenderDrawRect(renderer, &fruitRect);
-    
+
     checkIfDead(&game->snake);
-    
+
     // Highlight the square that the snake head collided with
     if(game->snake.isDead) {
         SDL_SetRenderDrawColor(renderer, 144, 195, 212, 255);
@@ -334,62 +334,62 @@ void render(SDL_Renderer *renderer, GameState *game)
             SNAKE_SIZE
         };
         SDL_RenderFillRect(renderer, &collideRect);
-        
+
         playAgainButtons(renderer, game, 0, 0);
     }
-    
+
     drawScore(renderer, game);
 }
 
-int main(int argc, const char * argv[]) {
-    
+int main(int argc, char * argv[]) {
+
     GameState gameState;
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;
-    
+
     SDL_Init(SDL_INIT_VIDEO);
     TTF_Init();
-    
-    srandom((int)time(NULL));
-    
+
+    srand((int)time(NULL));
+
     window = SDL_CreateWindow("Snake",
                               SDL_WINDOWPOS_UNDEFINED,
                               SDL_WINDOWPOS_UNDEFINED,
                               SCREEN_WIDTH,
                               SCREEN_HEIGHT,
                               SDL_WINDOW_OPENGL);
-    
+
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     gameState.renderer = renderer;
     SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
-    
+
     loadGame(&gameState);
-    
+
     int running = 1;
     while (running) {
         running = processEvents(renderer, window, &gameState);
-        
+
         if (!gameState.paused) {
             process(renderer, &gameState);
-            
+
             render(renderer, &gameState);
             SDL_RenderPresent(renderer);
-            
+
             SDL_Delay(50);
-            
+
             if (gameState.snake.isDead) {
                 gameState.snake.direction = STATIONARY;
                 while (playAgain(renderer, window, &gameState));
             }
         }
     }
-    
+
     TTF_CloseFont(gameState.font);
     freeSnake(&gameState);
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
     TTF_Quit();
     SDL_Quit();
-    
+
     return 0;
 }

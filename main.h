@@ -20,8 +20,8 @@
 #define GO_RIGHT 3
 #define GO_DOWN 4
 
-#include <SDL2_image/SDL_image.h>
 #include <SDL2/SDL.h>
+#include <SDL2_image/SDL_image.h>
 #include <SDL2_ttf/SDL_ttf.h>
 
 // Left = 0, up = 1, down = 2, right = 3
@@ -51,25 +51,25 @@ typedef struct {
 typedef struct {
     // Snake
     Snake snake;
-    
+
     // Fruit
     Fruit fruit;
-    
+
     // Font
     TTF_Font *font;
-    
+
     // Renderer
     SDL_Renderer *renderer;
-    
+
     // Pause
     int paused;
-    
+
     // Score
     int score;
-    
+
     // Snake can go through walls
     int noWalls;
-    
+
 } GameState;
 
 void render(SDL_Renderer *renderer, GameState *game);
