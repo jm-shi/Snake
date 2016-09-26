@@ -10,11 +10,12 @@
 
 #include "main.h"
 
-void ateFruit(SDL_Renderer *renderer, GameState *game);
 void randomize(Fruit *fruit);
+void moveSnakeBlocks(Snake *curNode);
+void elongateSnake(Snake *snake);
+void ateFruit(SDL_Renderer *renderer, GameState *game);
 
 void checkIfDead(Snake *snake);
-void elongateSnake(Snake *snake);
 void moveSnake(Snake *snake);
 
 void freeSnake(GameState *game);
