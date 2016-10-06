@@ -14,23 +14,16 @@
 #define SNAKE_SIZE 20
 #define FRUIT_SIZE 20
 
-#define STOP 0
-#define GO_LEFT 1
-#define GO_UP 2
-#define GO_RIGHT 3
-#define GO_DOWN 4
-
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 #include <SDL2_ttf/SDL_ttf.h>
 
-// Left = 0, up = 1, down = 2, right = 3
 typedef enum {
-    STATIONARY = STOP,
-    LEFT = GO_LEFT,
-    UP = GO_UP,
-    RIGHT = GO_RIGHT,
-    DOWN = GO_DOWN
+    STATIONARY = 0,
+    LEFT = 1,
+    UP = 2,
+    RIGHT = 3,
+    DOWN = 4
 } Direction;
 
 typedef struct Snake {

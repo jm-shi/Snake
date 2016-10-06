@@ -55,7 +55,7 @@ void process(SDL_Renderer *renderer, GameState *game) {
         ateFruit(renderer, game);
 
         // If snake goes beyond the right end of screen, go to left end of screen
-        if (snake->head->x >= SCREEN_WIDTH-SNAKE_SIZE && snake->head->direction == GO_RIGHT) {
+        if (snake->head->x >= SCREEN_WIDTH-SNAKE_SIZE && snake->head->direction == RIGHT) {
             if (game->noWalls) {
                 snake->head->x = -SNAKE_SIZE;
             }
@@ -66,7 +66,7 @@ void process(SDL_Renderer *renderer, GameState *game) {
             }
         }
         // If snake goes beyond left end of screen, go to right end of screen
-        else if (snake->head->x <= 0 && snake->head->direction == GO_LEFT) {
+        else if (snake->head->x <= 0 && snake->head->direction == LEFT) {
             if (game->noWalls) {
                 snake->head->x = SCREEN_WIDTH;
             }
@@ -77,7 +77,7 @@ void process(SDL_Renderer *renderer, GameState *game) {
             }
         }
         // If snake goes beyond top of screen, go to bottom of screen
-        else if (snake->head->y <= 0 && snake->head->direction == GO_UP) {
+        else if (snake->head->y <= 0 && snake->head->direction == UP) {
             if (game->noWalls) {
                 snake->head->y = SCREEN_HEIGHT;
             }
@@ -88,7 +88,7 @@ void process(SDL_Renderer *renderer, GameState *game) {
             }
         }
         // If snake goes beyond bottom of screen, go to top of screen
-        else if (snake->head->y + SNAKE_SIZE >= SCREEN_HEIGHT && snake->head->direction == GO_DOWN) {
+        else if (snake->head->y + SNAKE_SIZE >= SCREEN_HEIGHT && snake->head->direction == DOWN) {
             if (game->noWalls) {
                 snake->head->y = -SNAKE_SIZE;
             }
@@ -215,35 +215,35 @@ int processEvents(SDL_Renderer *renderer, SDL_Window *window, GameState *game) {
     if (!game->paused) {
         const Uint8 *state = SDL_GetKeyboardState(NULL);
         if(state[SDL_SCANCODE_LEFT]) {
-            if (game->snake.head->direction != GO_RIGHT) {
-                game->snake.head->direction = GO_LEFT;
+            if (game->snake.head->direction != RIGHT) {
+                game->snake.head->direction = LEFT;
             }
             else if (game->snake.length == 1) {
-                game->snake.head->direction = GO_LEFT;
+                game->snake.head->direction = LEFT;
             }
         }
         else if(state[SDL_SCANCODE_UP]) {
-            if (game->snake.head->direction != GO_DOWN) {
-                game->snake.head->direction = GO_UP;
+            if (game->snake.head->direction != DOWN) {
+                game->snake.head->direction = UP;
             }
             else if (game->snake.length == 1) {
-                game->snake.head->direction = GO_UP;
+                game->snake.head->direction = UP;
             }
         }
         else if(state[SDL_SCANCODE_RIGHT]) {
-            if (game->snake.head->direction != GO_LEFT) {
-                game->snake.head->direction = GO_RIGHT;
+            if (game->snake.head->direction != LEFT) {
+                game->snake.head->direction = RIGHT;
             }
             else if (game->snake.length == 1) {
-                game->snake.head->direction = GO_RIGHT;
+                game->snake.head->direction = RIGHT;
             }
         }
         else if(state[SDL_SCANCODE_DOWN]) {
-            if (game->snake.head->direction != GO_UP) {
-                game->snake.head->direction = GO_DOWN;
+            if (game->snake.head->direction != UP) {
+                game->snake.head->direction = DOWN;
             }
             else if (game->snake.length == 1) {
-                game->snake.head->direction = GO_DOWN;
+                game->snake.head->direction = DOWN;
             }
         }
     }

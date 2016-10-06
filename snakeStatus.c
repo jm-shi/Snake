@@ -146,16 +146,16 @@ void moveSnake(Snake *snake) {
     }
 
     // First move the head
-    if (curNode->direction == GO_LEFT) {
+    if (curNode->direction == LEFT) {
         curNode->x -= 20;
     }
-    else if (curNode->direction == GO_UP) {
+    else if (curNode->direction == UP) {
         curNode->y -= 20;
     }
-    else if (curNode->direction == GO_RIGHT) {
+    else if (curNode->direction == RIGHT) {
         curNode->x += 20;
     }
-    else if (curNode->direction == GO_DOWN) {
+    else if (curNode->direction == DOWN) {
         curNode->y += 20;
     }
 
