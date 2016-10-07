@@ -10,7 +10,6 @@
 		84B9AEA41DA603B200FE61AB /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 84B9AE9C1DA603B200FE61AB /* main.c */; };
 		84B9AEA81DA6043000FE61AB /* menu.c in Sources */ = {isa = PBXBuildFile; fileRef = 84B9AE9E1DA603B200FE61AB /* menu.c */; };
 		84B9AEA91DA6043700FE61AB /* snakeStatus.c in Sources */ = {isa = PBXBuildFile; fileRef = 84B9AEA21DA603B200FE61AB /* snakeStatus.c */; };
-		84B9AEAB1DA6117F00FE61AB /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B9AEAA1DA6117F00FE61AB /* SDL2_image.framework */; };
 		84B9AEAD1DA6118900FE61AB /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B9AEAC1DA6118900FE61AB /* SDL2_ttf.framework */; };
 		84B9AEAF1DA6119000FE61AB /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B9AEAE1DA6119000FE61AB /* SDL2.framework */; };
 /* End PBXBuildFile section */
@@ -29,9 +28,6 @@
 
 /* Begin PBXFileReference section */
 		84B9AE8B1DA6031300FE61AB /* Snake */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Snake; sourceTree = BUILT_PRODUCTS_DIR; };
-		84B9AE961DA6034900FE61AB /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
-		84B9AE981DA6035000FE61AB /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
-		84B9AE9A1DA6035900FE61AB /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		84B9AE9C1DA603B200FE61AB /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		84B9AE9D1DA603B200FE61AB /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
 		84B9AE9E1DA603B200FE61AB /* menu.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = menu.c; sourceTree = "<group>"; };
@@ -39,7 +35,6 @@
 		84B9AEA11DA603B200FE61AB /* RobotoBlack.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = RobotoBlack.ttf; sourceTree = "<group>"; };
 		84B9AEA21DA603B200FE61AB /* snakeStatus.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = snakeStatus.c; sourceTree = "<group>"; };
 		84B9AEA31DA603B200FE61AB /* snakeStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = snakeStatus.h; sourceTree = "<group>"; };
-		84B9AEAA1DA6117F00FE61AB /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		84B9AEAC1DA6118900FE61AB /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
 		84B9AEAE1DA6119000FE61AB /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = Frameworks/SDL2.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -51,7 +46,6 @@
 			files = (
 				84B9AEAF1DA6119000FE61AB /* SDL2.framework in Frameworks */,
 				84B9AEAD1DA6118900FE61AB /* SDL2_ttf.framework in Frameworks */,
-				84B9AEAB1DA6117F00FE61AB /* SDL2_image.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,10 +88,6 @@
 			children = (
 				84B9AEAE1DA6119000FE61AB /* SDL2.framework */,
 				84B9AEAC1DA6118900FE61AB /* SDL2_ttf.framework */,
-				84B9AEAA1DA6117F00FE61AB /* SDL2_image.framework */,
-				84B9AE9A1DA6035900FE61AB /* SDL2.framework */,
-				84B9AE981DA6035000FE61AB /* SDL2_ttf.framework */,
-				84B9AE961DA6034900FE61AB /* SDL2_image.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
